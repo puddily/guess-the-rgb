@@ -1,0 +1,125 @@
+main {
+    background-color: #282c34;
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    /*justify-content: center;*/
+    flex-direction: column;
+}
+
+.header {
+    font-size: calc(10px + 2vmin);
+    padding: 0 1em;
+    color: white;
+}
+
+.color-container {
+    background-color: red;
+    border: 5px solid darkslategray;
+    width: 80%;
+    max-width: 1500px;
+    height: 60vmin;
+    padding: 0 1em;
+    margin: 1em auto;
+}
+
+.color-guess-container {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.color-guess {
+    background: transparent;
+    font-size: .65em;
+    text-align: center;
+    border: 4px solid;
+    border-radius: 3em;
+    height: 3vh;
+    width: 8.33vw;
+    padding: 0px 15px 0px 15px;
+    margin: 5px 15px 5px 15px;
+}
+
+.submit-button {
+    background: rgba(255, 255, 255, 1);
+    font-size: .65em;
+    text-align: center;
+    color: black;
+    border: 4px solid white;
+    border-radius: 3em;
+    height: 4vh;
+    width: 25vw;
+    padding: 0px 15px 0px 15px;
+    margin: 5px 15px 5px 15px;
+}
+
+.red {
+    border-color: red;
+}
+
+.blue {
+    border-color: blue;
+}
+
+.green {
+    border-color: green;
+}
+
+
+
+
+@media only screen and (max-width: 1200px) {
+    .main {}
+
+    .color-guess-container {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .color-guess {
+        background: transparent;
+        font-size: 1.5em;
+        text-align: center;
+        border: 4px solid;
+        border-radius: 3em;
+        height: 5vh;
+        width: 50vw;
+        padding: 0px 15px 0px 15px;
+        margin: 5px 15px 5px 15px;
+    }
+
+
+    .red {
+        border-color: red;
+    }
+
+    .blue {
+        border-color: blue;
+    }
+
+    .green {
+        border-color: green;
+    }
+
+
+    .submit-button {
+        background: rgba(255, 255, 255, 1);
+        font-size: 1.25em;
+        text-align: center;
+        color: black;
+        border: 4px solid white;
+        border-radius: 3em;
+        height: 5vh;
+        width: 50vw;
+        padding: 0px 15px 0px 15px;
+        margin: 5px 15px 5px 15px;
+    }
+}
