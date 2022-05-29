@@ -16,7 +16,7 @@ main {
 }
 
 .color-container {
-    background-color: red;
+    /*background-color: red;*/
     border: 5px solid darkslategray;
     width: 80%;
     max-width: 1500px;
