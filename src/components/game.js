@@ -12,6 +12,7 @@ export default class Game extends React.Component {
         this.colorGreen = RandomNumber(0, 255)
         this.colorBlue = RandomNumber(0, 255)
 
+
         var setGuessRed = function (guess) {
             this.guessRed = guess
         }
@@ -25,9 +26,22 @@ export default class Game extends React.Component {
     }
 
     Check = () => {
+        console.log("Your guess was: ")
         console.log(this.state.guessRed)
         console.log(this.state.guessBlue)
         console.log(this.state.guessGreen)
+
+        console.log("The color was: ")
+        console.log(this.colorRed)
+        console.log(this.colorBlue)
+        console.log(this.colorGreen)
+
+        let redDelta = Math.abs(this.colorRed - this.state.guessRed)
+        let greenDelta = Math.abs(this.colorBlue - this.state.guessBlue)
+        let blueDelta = Math.abs(this.colorGreen - this.state.guessGreen)
+        let totaldelta = redDelta + greenDelta + blueDelta
+        console.log("Your score for this round is " + totaldelta + "! (Higher is worse. Minimum score: 0. Maximum score: 765)")
+        //console.log("Your guess was: " + this.state.guessRed, + ", " + this.state.guessBlue, + ", " + this.state.guessGreen)
         console.log("Guess submitted!")
     }
 
