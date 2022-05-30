@@ -29,16 +29,29 @@ export default class Game extends React.Component {
         console.log(this.colorBlue)
         console.log(this.colorGreen)
 
+        console.log("deltas:")
         let redDelta = Math.abs(this.colorRed - this.state.guessRed)
-        let greenDelta = Math.abs(this.colorBlue - this.state.guessBlue)
-        let blueDelta = Math.abs(this.colorGreen - this.state.guessGreen)
+        console.log("color & guess red:")
+        console.log(this.colorRed)
+        console.log(this.state.guessRed)
+        let greenDelta = Math.abs(this.colorGreen - this.state.guessGreen)
+        console.log("delta & guess green:")
+        console.log(this.colorGreen)
+        console.log(this.state.guessGreen)
+        let blueDelta = Math.abs(this.colorBlue - this.state.guessBlue)
+        console.log("delta & guess blue:")
+        console.log(this.colorBlue)
+        console.log(this.state.guessBlue)
         let totaldelta = redDelta + greenDelta + blueDelta
+        console.log(totaldelta)
+
         console.log("Your score for this round is " + totaldelta + "! (Higher is worse. Minimum score: 0. Maximum score: 765)")
 
         let maxScore = 765
 
-        this.setState({ score: this.state.score + (maxScore - + totaldelta) })
+        this.setState({ score: this.state.score + (maxScore - totaldelta) })
         this.setState({ round: this.state.round + 1 })
+        this.setState({ maxScore: this.state.maxScore + maxScore })
         //console.log("Your guess was: " + this.state.guessRed, + ", " + this.state.guessBlue, + ", " + this.state.guessGreen)
         console.log("Guess submitted!")
     }
@@ -142,7 +155,7 @@ export default class Game extends React.Component {
             <main>
                 <header className="header">
                     <h1>What is the RGB value of this color?</h1>
-                    <div className="color-container" style={{ backgroundColor: 'rgb(' + this.colorRed + ',' + this.colorBlue + ',' + + this.colorGreen + ')' }}>
+                    <div className="color-container" style={{ backgroundColor: 'rgb(' + this.colorRed + ',' + this.colorGreen + ',' + + this.colorBlue + ')' }}>
                         <div>
 
                         </div>
