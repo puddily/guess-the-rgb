@@ -5,6 +5,8 @@ export default class Game extends React.Component {
     constructor() {
         super()
         this.state = { guessRed: 0, guessGreen: 0, guessBlue: 0 }
+        this.state = { score: 0, round: 0, maxScore: 0, maxRound: 5 }
+
         var RandomNumber = function (minX, maxX) {
             return Math.floor((Math.random() * maxX - minX) + minX)
         }
@@ -13,15 +15,6 @@ export default class Game extends React.Component {
         this.colorBlue = RandomNumber(0, 255)
 
 
-        var setGuessRed = function (guess) {
-            this.guessRed = guess
-        }
-        var setGuessBlue = function (guess) {
-            this.guessBlue = guess
-        }
-        var setGuessGreen = function (guess) {
-            this.guessGreen = guess
-        }
 
     }
 
@@ -41,6 +34,11 @@ export default class Game extends React.Component {
         let blueDelta = Math.abs(this.colorGreen - this.state.guessGreen)
         let totaldelta = redDelta + greenDelta + blueDelta
         console.log("Your score for this round is " + totaldelta + "! (Higher is worse. Minimum score: 0. Maximum score: 765)")
+
+        let maxScore = 765
+
+        this.setState({ score: this.state.score + (maxScore - + totaldelta) })
+        this.setState({ round: this.state.round + 1 })
         //console.log("Your guess was: " + this.state.guessRed, + ", " + this.state.guessBlue, + ", " + this.state.guessGreen)
         console.log("Guess submitted!")
     }
@@ -134,7 +132,12 @@ export default class Game extends React.Component {
     }
 
 
+
     render() {
+        const score = this.state.score;
+        const round = this.state.round;
+        const maxScore = this.state.maxScore;
+        const maxRound = this.state.maxRound;
         return (
             <main>
                 <header className="header">
@@ -157,6 +160,10 @@ export default class Game extends React.Component {
                         <input id='blue' onChange={this.handleChange} className='color-guess blue' placeholder='0-255'></input>
                     </div>
                     <button onClick={this.Check} className='submit-button'>Submit</button>
+                    <div className="game-state-container">
+                        <p className="game-state-item" id='score'>Score: {score} / {maxScore}</p>
+                        <p className="game-state-item" id='round'>Round: {round} of {maxRound}</p>
+                    </div>
                 </header >
             </main >
         )

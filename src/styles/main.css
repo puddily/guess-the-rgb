@@ -71,6 +71,18 @@ main {
     border-color: green;
 }
 
+.game-state-container {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.game-state-item {
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
 
 
 
