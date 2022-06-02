@@ -4,13 +4,25 @@ import '../styles/main.css'
 export default class Game extends React.Component {
     constructor() {
         super()
-        this.state = { guessRed: 0, guessGreen: 0, guessBlue: 0 }
-        this.state = { score: 0, round: 0, maxScore: 0, maxRound: 5 }
+        this.state = { score: 0, round: 1, maxScore: 0, maxRound: 5 }
     }
 
     componentDidMount() {
         this.colorDiv = createRef()
         this.Reset()
+
+        // Set default value for guesses after component mounts
+        if (isNaN(this.state.guessRed)) {
+            this.setState({ guessRed: 0 })
+        }
+        if (isNaN(this.state.guessBlue)) {
+            this.setState({ guessBlue: 0 })
+        }
+
+        if (isNaN(this.state.guessGreen)) {
+            this.setState({ guessGreen: 0 })
+        }
+
     }
 
     RandomNumber = (minX, maxX) => {
@@ -32,7 +44,7 @@ export default class Game extends React.Component {
 
         this.setState({ score: this.state.score + (maxScore - totaldelta) })
         this.setState({ round: this.state.round + 1 })
-        this.setState({ maxScore: this.state.round * 765 })
+        this.setState({ maxScore: (this.state.round) * 765 })
         //console.log("Your guess was: " + this.state.guessRed, + ", " + this.state.guessBlue, + ", " + this.state.guessGreen)
         console.log("Guess submitted!")
         this.ColorChange()
@@ -41,7 +53,7 @@ export default class Game extends React.Component {
     Reset = () => {
         this.ColorChange()
         this.setState({ score: 0 })
-        this.setState({ round: 0 })
+        this.setState({ round: 1 })
         this.setState({ maxScore: 0 })
         console.log("Game reset")
     }
@@ -56,6 +68,7 @@ export default class Game extends React.Component {
         // console.log(this.colorRed)
         // console.log(this.colorBlue)
         // console.log(this.colorGreen)
+
 
         //console.log("deltas:")
         let redDelta = Math.abs(this.colorRed - this.state.guessRed)
