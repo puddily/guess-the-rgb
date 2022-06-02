@@ -1,0 +1,16 @@
+.results {
+    background-color: rgb(58, 65, 78);
+    border-radius: 3rem;
+    width: 95vw;
+    height: 95vh;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transform: translate(0%, 2.5%)
+}
+
+.results-text {
+    color: white;
+}

@@ -9,7 +9,8 @@ main {
     flex-direction: column;
 }
 
-.header {
+
+.game {
     font-size: calc(10px + 2vmin);
     padding: 0 1em;
     color: white;
@@ -87,6 +88,10 @@ main {
 
 
 @media only screen and (max-width: 1200px) {
+
+    h1 {
+        font-size: calc(18px + 3vmin);
+    }
 
     .color-guess-container {
         display: flex;

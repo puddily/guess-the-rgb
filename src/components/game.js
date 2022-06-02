@@ -1,10 +1,20 @@
 import React, { useRef, createRef } from 'react'
 import '../styles/main.css'
+import '../styles/results.css'
+import Results from './results.js'
 
 export default class Game extends React.Component {
     constructor() {
         super()
-        this.state = { score: 0, round: 1, maxScore: 0, maxRound: 5 }
+        this.state = {
+            score: 0,
+            round: 1,
+            maxScore: 0,
+            maxRound: 5,
+            colors: [],
+            guesses: [],
+            score: []
+        }
     }
 
     componentDidMount() {
@@ -22,6 +32,7 @@ export default class Game extends React.Component {
         if (isNaN(this.state.guessGreen)) {
             this.setState({ guessGreen: 0 })
         }
+        this.setState({ showResults: false })
 
     }
 
@@ -36,8 +47,6 @@ export default class Game extends React.Component {
     }
 
     NextRound = (totaldelta) => {
-
-
         console.log("Your score for this round is " + totaldelta + "! (Higher is worse. Minimum score: 0. Maximum score: 765)")
 
         let maxScore = 765
@@ -48,6 +57,7 @@ export default class Game extends React.Component {
         //console.log("Your guess was: " + this.state.guessRed, + ", " + this.state.guessBlue, + ", " + this.state.guessGreen)
         console.log("Guess submitted!")
         this.ColorChange()
+
     }
 
     Reset = () => {
@@ -56,6 +66,7 @@ export default class Game extends React.Component {
         this.setState({ round: 1 })
         this.setState({ maxScore: 0 })
         console.log("Game reset")
+        this.setState({ showResults: true })
     }
 
     Check = () => {
@@ -94,6 +105,10 @@ export default class Game extends React.Component {
         else {
             this.NextRound(totaldelta)
         }
+    }
+
+    closeResults = (e) => {
+        this.setState({ showResults: false })
     }
 
     handleChange = (e) => { //Event handler for changing color values
@@ -195,20 +210,6 @@ export default class Game extends React.Component {
                     console.log("Error! Please try refreshing the page.")
             }
         }
-
-        /*
-        console.log(val)
-        if (val > 255) {
-            e.target.value = 255
-        }
-        if (val > 255) {
-            e.target.value = 255
-        }
-        if (val < 0) {
-            e.target.value = 0
-        }
-        */
-
     }
 
 
@@ -218,34 +219,45 @@ export default class Game extends React.Component {
         const round = this.state.round;
         const maxScore = this.state.maxScore;
         const maxRound = this.state.maxRound;
+        var stats = this.state.stats
+        var showResults = this.state.showResults;
         return (
-            <main>
-                <header className="header">
-                    <h1>What is the RGB value of this color?</h1>
-                    <div className="color-container" ref={this.colorDiv} style={{ backgroundColor: 'rgb(' + this.colorRed + ',' + this.colorGreen + ',' + + this.colorBlue + ')' }}>
-                        <div>
+            <div>
+                <main>
+                    <div className="game">
+                        <h1>What is the RGB value of this color?</h1>
+                        <div className="color-container" ref={this.colorDiv} style={{ backgroundColor: 'rgb(' + this.colorRed + ',' + this.colorGreen + ',' + + this.colorBlue + ')' }}>
+                            <div>
 
+                            </div>
                         </div>
-                    </div>
-                    <a
-                        className="App-link"
-                        href="https://reactjs.org"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                    </a>
-                    <div className='color-guess-container'>
-                        <input id='red' onChange={this.handleChange} className='color-guess red' placeholder='0-255'></input>
-                        <input id='green' onChange={this.handleChange} className='color-guess green' placeholder='0-255'></input>
-                        <input id='blue' onChange={this.handleChange} className='color-guess blue' placeholder='0-255'></input>
-                    </div>
-                    <button onClick={this.Check} className='submit-button'>Submit</button>
-                    <div className="game-state-container">
-                        <p className="game-state-item" id='score'>Score: {score} / {maxScore}</p>
-                        <p className="game-state-item" id='round'>Round: {round} of {maxRound}</p>
-                    </div>
-                </header >
-            </main >
+                        <a
+                            className="App-link"
+                            href="https://reactjs.org"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                        </a>
+                        <div className='color-guess-container'>
+                            <input id='red' onChange={this.handleChange} className='color-guess red' placeholder='0-255'></input>
+                            <input id='green' onChange={this.handleChange} className='color-guess green' placeholder='0-255'></input>
+                            <input id='blue' onChange={this.handleChange} className='color-guess blue' placeholder='0-255'></input>
+                        </div>
+                        <button onClick={this.Check} className='submit-button'>Submit</button>
+                        <div className="game-state-container">
+                            <p className="game-state-item" id='score'>Score: {score} / {maxScore}</p>
+                            <p className="game-state-item" id='round'>Round: {round} of {maxRound}</p>
+                        </div>
+                    </div >
+                    {showResults &&
+                        <div className="results">
+                            <h1 className="results-text">Your guesses:</h1>
+                            { }
+                            <button onClick={this.closeResults}>Close</button>
+                        </div>
+                    }
+                </main >
+            </div>
         )
     }
 }
