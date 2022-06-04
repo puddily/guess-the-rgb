@@ -271,7 +271,7 @@ export default class Game extends React.Component {
                                     <div className="results-container" key={"result-" + i}>
                                         <div className="guess-container">
                                             <div className="results-color" style={{ backgroundColor: 'rgb(' + this.state.colors[i][0] + ', ' + this.state.colors[i][1] + ', ' + this.state.colors[i][2] + ')' }}></div>
-                                            <div className="results-guess">Your guess was {this.state.guesses[i][0] + ', ' + this.state.guesses[i][1] + ', ' + this.state.guesses[i][2]}. Score: {this.state.maxRoundScore - this.state.deltas[i]} / {this.state.maxRoundScore} </div>
+                                            <div className="results-guess">Your guess was <span style={{ color: 'rgb(' + this.state.guesses[i][0] + ', ' + this.state.guesses[i][1] + ', ' + this.state.guesses[i][2] + ')' }}>{this.state.guesses[i][0] + ', ' + this.state.guesses[i][1] + ', ' + this.state.guesses[i][2]}</span>. Score: {this.state.maxRoundScore - this.state.deltas[i]} / {this.state.maxRoundScore} </div>
                                         </div>
                                         <div className="results-text results-color-text">Actual: {this.state.colors[i][0] + ', ' + this.state.colors[i][1] + ', ' + this.state.colors[i][2]}</div>
                                     </div>
