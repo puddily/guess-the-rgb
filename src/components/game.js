@@ -50,9 +50,11 @@ export default class Game extends React.Component {
         console.log("Local score: " + localScore)
         console.log("Current delta: " + delta)
 
-        this.setState({ score: this.state.score + localScore })
-        this.setState({ round: this.state.round + 1 })
-        this.setState({ maxScore: (this.state.round) * 765 })
+        this.setState({
+            score: this.state.score + localScore,
+            round: this.state.round + 1,
+            maxScore: (this.state.round) * 765
+        })
         console.log("Score added to total. Round changed.")
     }
 
@@ -81,7 +83,11 @@ export default class Game extends React.Component {
         this.setState({
             score: 0,
             round: 1,
-            maxScore: 0
+            maxScore: 0,
+            guesses: [],
+            colors: [],
+            deltas: [],
+            guesses: []
         })
         console.log("Game reset")
     }
@@ -119,10 +125,12 @@ export default class Game extends React.Component {
 
     }
 
-    closeResults = (e) => { //Closes the results screen modal
-        this.setState({ showResults: false })
-        this.setState({ colors: [] })
-        this.setState({ guesses: [] })
+    closeResults = (e) => { //Closes the results screen modal, then resets the game
+        this.setState({
+            showResults: false,
+        }, () => {
+            this.Reset()
+        })
     }
 
     handleChange = (e) => { //Event handler for changing color values
@@ -225,7 +233,6 @@ export default class Game extends React.Component {
         const round = this.state.round;
         const maxScore = this.state.maxScore;
         const maxRound = this.state.maxRound;
-        var stats = this.state.stats
         var showResults = this.state.showResults;
         return (
             <div>
