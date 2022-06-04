@@ -19,8 +19,8 @@ main {
 .color-container {
     /*background-color: red;*/
     border: 5px solid darkslategray;
-    width: 80%;
     max-width: 1500px;
+    width: 60vmin;
     height: 60vmin;
     padding: 0 1em;
     margin: 1em auto;
@@ -91,6 +91,16 @@ main {
 
     h1 {
         font-size: calc(18px + 3vmin);
+    }
+
+    .color-container {
+        /*background-color: red;*/
+        border: 5px solid darkslategray;
+        max-width: 1500px;
+        width: 60vmin;
+        height: 60vmin;
+        padding: 0 1em;
+        margin: 1em auto;
     }
 
     .color-guess-container {

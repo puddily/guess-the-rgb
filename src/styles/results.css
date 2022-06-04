@@ -5,12 +5,82 @@
     height: 95vh;
     position: fixed;
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
-    transform: translate(0%, 2.5%)
+    transform: translate(0%, 2.5%);
+    overflow: auto;
+}
+
+.guess-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.results-guess {
+    margin-left: 10vw;
+    align-self: center;
+    color: white;
+    font-size: calc(8px + 2vmin);
+}
+
+.results-color {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    height: 15vmin;
+    width: 15vmin;
+}
+
+.results-color-text {
+    float: left;
+}
+
+.results-text-header {
+    color: white;
+    font-size: calc(18px + 2.5vmin);
 }
 
 .results-text {
     color: white;
+    font-size: calc(8px + 2vmin);
+}
+
+.score-text {
+    color: white;
+    padding-top: 15px;
+    font-size: calc(18px + 2.5vmin);
+}
+
+.close-button {
+    background: rgba(255, 255, 255, 1);
+    font-size: 1.25em;
+    text-align: center;
+    color: black;
+    border: 4px solid white;
+    border-radius: 3em;
+    height: 5vh;
+    width: 10vw;
+    padding: 0px 15px 0px 15px;
+    margin: 15px;
+}
+
+@media only screen and (max-width: 1200px) {
+    .results-color {
+        margin: 15px 15px 5px 15px;
+        height: 25vmin;
+        width: 25vmin;
+    }
+
+    .close-button {
+        background: rgba(255, 255, 255, 1);
+        font-size: 1.25em;
+        text-align: center;
+        color: black;
+        border: 4px solid white;
+        border-radius: 3em;
+        height: 8vh;
+        width: 30vw;
+        padding: 0px 15px 0px 15px;
+        margin: 15px;
+    }
+
 }

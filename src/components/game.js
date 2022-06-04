@@ -1,25 +1,30 @@
 import React, { useRef, createRef } from 'react'
 import '../styles/main.css'
-import '../styles/results.css'
-import Results from './results.js'
+import '../styles/results.css' //TODO: move modal to results.js
+import Results from './results.js' //TODO: move modal to results.js
 
 export default class Game extends React.Component {
     constructor() {
         super()
         this.state = {
+            totalDelta: 0,
+            maxRoundScore: 765,
             score: 0,
             round: 1,
-            maxScore: 0,
             maxRound: 5,
             colors: [],
             guesses: [],
-            score: []
+            deltas: [],
+            score: [],
         }
     }
 
     componentDidMount() {
+        this.setState({ maxScore: 765 })
+        this.setState({ totalDelta: 0 })
+
         this.colorDiv = createRef()
-        this.Reset()
+        this.Initialize()
 
         // Set default value for guesses after component mounts
         if (isNaN(this.state.guessRed)) {
@@ -46,27 +51,52 @@ export default class Game extends React.Component {
         this.colorBlue = this.RandomNumber(0, 255)
     }
 
-    NextRound = (totaldelta) => {
-        console.log("Your score for this round is " + totaldelta + "! (Higher is worse. Minimum score: 0. Maximum score: 765)")
+    SetScore(delta) {
+        let localScore = (765 - delta)
+        console.log("Local score: " + localScore)
+        console.log("Current delta: " + delta)
+        console.log("totalDelta: " + this.state.totalDelta)
+        this.setState({ totalDelta: this.state.totalDelta + delta })
 
-        let maxScore = 765
-
-        this.setState({ score: this.state.score + (maxScore - totaldelta) })
+        this.setState({ score: this.state.score + localScore })
+        //this.setState({ score: this.state.score + (this.state.maxRoundScore - this.state.totalDelta) })
         this.setState({ round: this.state.round + 1 })
         this.setState({ maxScore: (this.state.round) * 765 })
+        console.log("Score added to total. Round changed.")
+    }
+
+    NextRound = () => {
         //console.log("Your guess was: " + this.state.guessRed, + ", " + this.state.guessBlue, + ", " + this.state.guessGreen)
-        console.log("Guess submitted!")
+
         this.ColorChange()
 
     }
 
-    Reset = () => {
+    Finalize = () => {
+        console.log(this.state.score)
+        let maxScore = 765
+        this.setState({
+            maxScore: (this.state.round) * 765,
+            roundScore: this.state.totalDelta,
+            roundMaxScore: maxScore * this.state.round,
+        }, () => {
+            console.log(this.state.score)
+            this.setState({ showResults: true })
+        })
+    }
+
+    Initialize = () => {
         this.ColorChange()
-        this.setState({ score: 0 })
-        this.setState({ round: 1 })
-        this.setState({ maxScore: 0 })
+        this.Reset()
+    }
+
+    Reset = () => {
+        this.setState({
+            score: 0,
+            round: 1,
+            maxScore: 0
+        })
         console.log("Game reset")
-        this.setState({ showResults: true })
     }
 
     Check = () => {
@@ -83,9 +113,9 @@ export default class Game extends React.Component {
 
         //console.log("deltas:")
         let redDelta = Math.abs(this.colorRed - this.state.guessRed)
-        // console.log("color & guess red:")
-        // console.log(this.colorRed)
-        // console.log(this.state.guessRed)
+        console.log("color & guess red:")
+        console.log(this.colorRed)
+        console.log(this.state.guessRed)
         let greenDelta = Math.abs(this.colorGreen - this.state.guessGreen)
         //console.log("delta & guess green:")
         //console.log(this.colorGreen)
@@ -98,17 +128,30 @@ export default class Game extends React.Component {
         //console.log(totaldelta)
 
 
+        this.state.colors.push([this.colorRed, this.colorGreen, this.colorBlue])
+        this.state.guesses.push([this.state.guessRed, this.state.guessGreen, this.state.guessBlue])
+        this.state.deltas.push(totaldelta)
+        console.log(totaldelta)
+
+        this.SetScore(totaldelta)
+
+
+        console.log("Your score for this round is " + totaldelta + "! (Higher is worse. Minimum score: 0. Maximum score: 765)")
 
         if (this.state.round === 5) {
-            this.Reset()
+            this.Finalize()
         }
         else {
-            this.NextRound(totaldelta)
+            this.NextRound()
         }
+
+
     }
 
     closeResults = (e) => {
         this.setState({ showResults: false })
+        this.setState({ colors: [] })
+        this.setState({ guesses: [] })
     }
 
     handleChange = (e) => { //Event handler for changing color values
@@ -249,15 +292,27 @@ export default class Game extends React.Component {
                             <p className="game-state-item" id='round'>Round: {round} of {maxRound}</p>
                         </div>
                     </div >
-                    {showResults &&
+
+                    {showResults && //TODO: move modal to results.js
                         <div className="results">
-                            <h1 className="results-text">Your guesses:</h1>
-                            { }
-                            <button onClick={this.closeResults}>Close</button>
+                            <h1 className="results-text-header">Your guesses:</h1>
+                            {
+                                this.state.colors.map((x, i) =>
+                                    <div className="results-container" key={"result-" + i}>
+                                        <div className="guess-container">
+                                            <div className="results-color" style={{ backgroundColor: 'rgb(' + this.state.colors[i][0] + ', ' + this.state.colors[i][1] + ', ' + this.state.colors[i][2] + ')' }}></div>
+                                            <div className="results-guess">Your guess was {this.state.guesses[i][0] + ', ' + this.state.guesses[i][1] + ', ' + this.state.guesses[i][2]}. Score: {this.state.maxRoundScore - this.state.deltas[i]} / {this.state.maxRoundScore} </div>
+                                        </div>
+                                        <div className="results-text results-color-text">Actual: {this.state.colors[i][0] + ', ' + this.state.colors[i][1] + ', ' + this.state.colors[i][2]}</div>
+                                    </div>
+                                )
+                            }
+                            <div className="score-text">Total score: {this.state.score}/{this.state.roundMaxScore}</div>
+                            <button className="close-button" onClick={this.closeResults}>Close</button>
                         </div>
                     }
                 </main >
-            </div>
+            </div >
         )
     }
 }
