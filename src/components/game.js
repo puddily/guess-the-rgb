@@ -7,7 +7,6 @@ export default class Game extends React.Component {
     constructor() {
         super()
         this.state = {
-            totalDelta: 0,
             maxRoundScore: 765,
             score: 0,
             round: 1,
@@ -15,15 +14,10 @@ export default class Game extends React.Component {
             colors: [],
             guesses: [],
             deltas: [],
-            score: [],
         }
     }
 
     componentDidMount() {
-        this.setState({ maxScore: 765 })
-        this.setState({ totalDelta: 0 })
-
-        this.colorDiv = createRef()
         this.Initialize()
 
         // Set default value for guesses after component mounts
@@ -37,7 +31,7 @@ export default class Game extends React.Component {
         if (isNaN(this.state.guessGreen)) {
             this.setState({ guessGreen: 0 })
         }
-        this.setState({ showResults: false })
+        this.setState({ showResults: false }) //Set default visibility of results screen to false
 
     }
 
@@ -45,31 +39,25 @@ export default class Game extends React.Component {
         return Math.floor((Math.random() * maxX - minX) + minX)
     }
 
-    ColorChange() {
+    ColorChange() { //Randomized the color of the square that refers to the class' color values
         this.colorRed = this.RandomNumber(0, 255)
         this.colorGreen = this.RandomNumber(0, 255)
         this.colorBlue = this.RandomNumber(0, 255)
     }
 
-    SetScore(delta) {
+    SetScore(delta) { //Updates the score, round, and maximum score when a guess is submitted
         let localScore = (765 - delta)
         console.log("Local score: " + localScore)
         console.log("Current delta: " + delta)
-        console.log("totalDelta: " + this.state.totalDelta)
-        this.setState({ totalDelta: this.state.totalDelta + delta })
 
         this.setState({ score: this.state.score + localScore })
-        //this.setState({ score: this.state.score + (this.state.maxRoundScore - this.state.totalDelta) })
         this.setState({ round: this.state.round + 1 })
         this.setState({ maxScore: (this.state.round) * 765 })
         console.log("Score added to total. Round changed.")
     }
 
-    NextRound = () => {
-        //console.log("Your guess was: " + this.state.guessRed, + ", " + this.state.guessBlue, + ", " + this.state.guessGreen)
-
+    NextRound = () => { //
         this.ColorChange()
-
     }
 
     Finalize = () => {
@@ -77,7 +65,6 @@ export default class Game extends React.Component {
         let maxScore = 765
         this.setState({
             maxScore: (this.state.round) * 765,
-            roundScore: this.state.totalDelta,
             roundMaxScore: maxScore * this.state.round,
         }, () => {
             console.log(this.state.score)
@@ -85,7 +72,7 @@ export default class Game extends React.Component {
         })
     }
 
-    Initialize = () => {
+    Initialize = () => { //Sets self(div) to a random color and resets the game state
         this.ColorChange()
         this.Reset()
     }
@@ -100,43 +87,27 @@ export default class Game extends React.Component {
     }
 
     Check = () => {
-        // console.log("Your guess was: ")
-        // console.log(this.state.guessRed)
-        // console.log(this.state.guessBlue)
-        // console.log(this.state.guessGreen)
+        //Checks current guess against the current color. 
+        //Adds the color, guess & difference to the state. 
+        //Afterwards, moves on to the next round or finalizes the game.
 
-        // console.log("The color was: ")
-        // console.log(this.colorRed)
-        // console.log(this.colorBlue)
-        // console.log(this.colorGreen)
-
-
-        //console.log("deltas:")
         let redDelta = Math.abs(this.colorRed - this.state.guessRed)
-        console.log("color & guess red:")
-        console.log(this.colorRed)
-        console.log(this.state.guessRed)
         let greenDelta = Math.abs(this.colorGreen - this.state.guessGreen)
-        //console.log("delta & guess green:")
-        //console.log(this.colorGreen)
-        //console.log(this.state.guessGreen)
         let blueDelta = Math.abs(this.colorBlue - this.state.guessBlue)
-        //console.log("delta & guess blue:")
-        //console.log(this.colorBlue)
-        //console.log(this.state.guessBlue)
         let totaldelta = redDelta + greenDelta + blueDelta
-        //console.log(totaldelta)
+
+        // Debug for guesses
+        // console.log("color & guess red:")
+        // console.log(this.colorRed)
+        // console.log(this.state.guessRed)
+        // console.log("Your total difference for this round is " + totaldelta + "! (Higher is worse. Minimum score: 0. Maximum score: 765)")
 
 
+        //Push 
         this.state.colors.push([this.colorRed, this.colorGreen, this.colorBlue])
         this.state.guesses.push([this.state.guessRed, this.state.guessGreen, this.state.guessBlue])
         this.state.deltas.push(totaldelta)
-        console.log(totaldelta)
-
         this.SetScore(totaldelta)
-
-
-        console.log("Your score for this round is " + totaldelta + "! (Higher is worse. Minimum score: 0. Maximum score: 765)")
 
         if (this.state.round === 5) {
             this.Finalize()
@@ -148,7 +119,7 @@ export default class Game extends React.Component {
 
     }
 
-    closeResults = (e) => {
+    closeResults = (e) => { //Closes the results screen modal
         this.setState({ showResults: false })
         this.setState({ colors: [] })
         this.setState({ guesses: [] })
@@ -156,14 +127,6 @@ export default class Game extends React.Component {
 
     handleChange = (e) => { //Event handler for changing color values
         let val = e.target.value
-
-        /*
-        console.log(isNaN(e.target.value))
-        if (isNaN(e.target.value)) {
-            val = 0
-            e.target.value = val
-        }
-        */
 
         if (isNaN(val)) { //If NaN or undefined
             switch (e.target.id) { //Set to previous value
