@@ -13,6 +13,6 @@ Try and score as high as possible!
 ![image](https://user-images.githubusercontent.com/40770861/172594762-a2397a38-327a-4afe-a6c0-efcaaa097764.png)
 
 ## Running Guess the RGB
-First, you will need to install NPM. Instructions can be found [here](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm). 
+First, you will need to install Node.js. Instructions can be found [here](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm). 
 
 After that, navigate to the base directory of the repository and run npm start. The server will be started and you can connect to the game through the PC you are serving it from (runs on localhost:3000 by default)
