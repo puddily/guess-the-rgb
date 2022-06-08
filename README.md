@@ -1,70 +1,18 @@
-# Getting Started with Create React App
+# Guess the RGB
+## About
+Guess the RGB is a simple game where you can guess the RGB values of colors and see how well you can do!
+I was interested in React JS and wanted to build something fun so I chose to make this.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## How to play
+Play by entering the red, green, and blue values into the respective checkboxes. Once you enter your guess and press the submit button, you will receive a score based on your guess (up to 765, based off of how much your guess was away from the real color). Once you play 5 rounds, the game will show you your guesses, the actual colors you were attempting to guess, and a breakdown of your total score. 
 
-## Available Scripts
+Try and score as high as possible!
 
-In the project directory, you can run:
+## Gameplay
+![Pasted image 20220608052610](https://user-images.githubusercontent.com/40770861/172594805-c5a0bcaa-0e33-4fa9-b8bb-321b4756e503.png)
+![image](https://user-images.githubusercontent.com/40770861/172594762-a2397a38-327a-4afe-a6c0-efcaaa097764.png)
 
-### `npm start`
+## Running Guess the RGB
+First, you will need to install NPM. Instructions can be found [here](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm). 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+After that, navigate to the base directory of the repository and run npm start. The server will be started and you can connect to the game through the PC you are serving it from (runs on localhost:3000 by default)
