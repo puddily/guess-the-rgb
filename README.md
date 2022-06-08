@@ -1,6 +1,7 @@
 # Guess the RGB
 ## About
 Guess the RGB is a simple game where you can guess the RGB values of colors and see how well you can do!
+
 I was interested in React JS and wanted to build something fun so I chose to make this.
 
 ## How to play
