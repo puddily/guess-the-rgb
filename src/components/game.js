@@ -58,8 +58,20 @@ export default class Game extends React.Component {
         console.log("Score added to total. Round changed.")
     }
 
+
+    ClearGuesses = () => {
+        let guesses = document.querySelectorAll(".color-guess");
+        guesses.forEach(element => element.value = "");
+        this.setState({
+            guessRed: 0,
+            guessBlue: 0,
+            guessGreen: 0
+        })
+    }
+
     NextRound = () => { //
         this.ColorChange()
+        this.ClearGuesses();
     }
 
     Finalize = () => {
@@ -87,7 +99,7 @@ export default class Game extends React.Component {
             guesses: [],
             colors: [],
             deltas: [],
-            guesses: []
+            guesses: [],
         })
         console.log("Game reset")
     }
@@ -121,8 +133,6 @@ export default class Game extends React.Component {
         else {
             this.NextRound()
         }
-
-
     }
 
     closeResults = (e) => { //Closes the results screen modal, then resets the game
@@ -225,8 +235,6 @@ export default class Game extends React.Component {
             }
         }
     }
-
-
 
     render() {
         const score = this.state.score;
