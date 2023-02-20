@@ -9,7 +9,8 @@ Try and score as high as possible!
 
 ## Gameplay
 ![Pasted image 20220608052610](https://user-images.githubusercontent.com/40770861/172594805-c5a0bcaa-0e33-4fa9-b8bb-321b4756e503.png)
-![image](https://user-images.githubusercontent.com/40770861/172594762-a2397a38-327a-4afe-a6c0-efcaaa097764.png)
+![image](https://user-images.githubusercontent.com/40770861/220204057-2e77f602-ad8b-4d8e-a09d-3101d01153b8.png)
+![image](https://user-images.githubusercontent.com/40770861/220204086-eb922cc8-603f-470b-81e9-4e1cda4741de.png)
 
 ## Running Guess the RGB locally
 Download the latest release file and unzip it, then run index.html (using your desired browser).
