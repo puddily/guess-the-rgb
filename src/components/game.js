@@ -92,6 +92,7 @@ export default class Game extends React.Component {
     }
 
     Reset = () => {
+        this.ClearGuesses();
         this.setState({
             score: 0,
             round: 1,
@@ -274,17 +275,22 @@ export default class Game extends React.Component {
                     {showResults && //TODO: move modal to results.js
                         <div className="results">
                             <h1 className="results-text-header">Your guesses:</h1>
+                            <hr style={{width: "85vw"}}/>
                             {
                                 this.state.colors.map((x, i) =>
                                     <div className="results-container" key={"result-" + i}>
                                         <div className="guess-container">
                                             <div className="results-color" style={{ backgroundColor: 'rgb(' + this.state.colors[i][0] + ', ' + this.state.colors[i][1] + ', ' + this.state.colors[i][2] + ')' }}></div>
-                                            <div className="results-guess">Your guess was <span style={{ color: 'rgb(' + this.state.guesses[i][0] + ', ' + this.state.guesses[i][1] + ', ' + this.state.guesses[i][2] + ')' }}>{this.state.guesses[i][0] + ', ' + this.state.guesses[i][1] + ', ' + this.state.guesses[i][2]}</span>. Score: {this.state.maxRoundScore - this.state.deltas[i]} / {this.state.maxRoundScore} </div>
+                                            <div className="results-text results-color-text">{this.state.colors[i][0] + ', ' + this.state.colors[i][1] + ', ' + this.state.colors[i][2]}</div>
                                         </div>
-                                        <div className="results-text results-color-text">Actual: {this.state.colors[i][0] + ', ' + this.state.colors[i][1] + ', ' + this.state.colors[i][2]}</div>
+                                        <div className="guess-container">
+                                        <div className="results-guess">Your guess was <span style={{ color: 'rgb(' + this.state.guesses[i][0] + ', ' + this.state.guesses[i][1] + ', ' + this.state.guesses[i][2] + ')' }}>{this.state.guesses[i][0] + ', ' + this.state.guesses[i][1] + ', ' + this.state.guesses[i][2]}</span>. Score: {this.state.maxRoundScore - this.state.deltas[i]} / {this.state.maxRoundScore} </div>
+                                        <br/>
+                                        </div>
                                     </div>
                                 )
                             }
+                            <hr style={{width: "70vw"}}/>
                             <div className="score-text">Total score: {this.state.score}/{this.state.roundMaxScore}</div>
                             <button className="close-button" onClick={this.closeResults}>Close</button>
                         </div>

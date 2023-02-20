@@ -11,13 +11,23 @@
     overflow: auto;
 }
 
-.guess-container {
+.results-container {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    width: 50%;
+}
+
+.guess-container {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 50%;
+    flex: 60vw;
+    flex-grow: 3;
+    align-items:center;
 }
 
 .results-guess {
-    margin-left: 10vw;
     align-self: center;
     color: white;
     font-size: calc(8px + 2vmin);
@@ -31,7 +41,8 @@
 }
 
 .results-color-text {
-    float: left;
+    color:darkgrey !important;
+    font-size: calc(4px + 1.5vmin) !important; 
 }
 
 .results-text-header {
@@ -40,6 +51,7 @@
 }
 
 .results-text {
+    text-align:left;
     color: white;
     font-size: calc(8px + 2vmin);
 }
