@@ -20,4 +20,4 @@ First, you will need to install Node.js. Instructions can be found [here](https:
 
 After that, navigate to the base directory of the repository and run npm install. Once the modules finish installing, run npm start. The server will be started and you can connect to the game through the PC you are serving it from (runs on localhost:3000 by default)
 
-To build, execute "npm run build" from the base directory of the repository. The current build will be saved to /
+To build, execute "npm run build" from the base directory of the repository. The current build will be saved to "/build".
