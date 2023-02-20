@@ -1,8 +1,6 @@
 # Guess the RGB
 ## About
-Guess the RGB is a simple game where you can guess the RGB values of colors and see how well you can do!
-
-I was interested in React JS and wanted to build something fun so I chose to make this.
+Guess the RGB is a simple game where you guess the RGB (red, green, and blue) values that create a given color and see how close you can get.
 
 ## How to play
 Play by entering the red, green, and blue values into the respective checkboxes. Once you enter your guess and press the submit button, you will receive a score based on your guess (up to 765, based off of how much your guess was away from the real color). Once you play 5 rounds, the game will show you your guesses, the actual colors you were attempting to guess, and a breakdown of your total score. 
