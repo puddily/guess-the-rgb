@@ -14,6 +14,11 @@ Try and score as high as possible!
 ![image](https://user-images.githubusercontent.com/40770861/172594762-a2397a38-327a-4afe-a6c0-efcaaa097764.png)
 
 ## Running Guess the RGB locally
+Download the latest release file and unzip it, then run index.html (using your desired browser).
+
+## Running Guess the RGB development environment
 First, you will need to install Node.js. Instructions can be found [here](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm). 
 
 After that, navigate to the base directory of the repository and run npm install. Once the modules finish installing, run npm start. The server will be started and you can connect to the game through the PC you are serving it from (runs on localhost:3000 by default)
+
+To build, execute "npm run build" from the base directory of the repository. The current build will be saved to /
